@@ -1,0 +1,31 @@
+title: "Calling tesseract"
+type: 'object'
+definitions:
+  blob_ref:
+    title: 'A reference to a file, either a HTTP URI or a urn:sha1: URI'
+    type: 'string'
+    pattern: '^(https?://.*|urn:sha1:[a-z0-9]{40})$'
+required:
+  - 'input'
+  - 'language'
+  - 'outputFormat'
+properties:
+  input:
+    $ref: '#/definitions/blob_ref'
+  output:
+    $ref: '#/definitions/blob_ref'
+  language:
+    type: 'array'
+    minLength: 1
+    items:
+      type: 'string'
+      enum:
+        - 'deu-frak'
+        - 'equ'
+        - 'eng'
+        - 'deu'
+        - 'osd'
+  outputFormat:
+    type: 'string'
+    enum: ['text', 'hocr']
+    default: 'hocr'

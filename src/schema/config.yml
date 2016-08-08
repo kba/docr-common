@@ -1,0 +1,62 @@
+title: 'Schema of the docr-config.yml file'
+type: 'object'
+additionalProperties: false
+definitions:
+  port:
+    type: 'number'
+    format: 'integer'
+properties:
+  jobserver:
+    type: 'object'
+    additionalProperties: false
+    properties:
+      port: 
+        $ref: '#/definitions/port'
+  blob:
+    type: 'object'
+    additionalProperties: false
+    properties:
+      url:
+        title: 'URL of the blob server for the client'
+        type: 'string'
+        pattern: 'https?://.*'
+      port: 
+        $ref: '#/definitions/port'
+      folder:
+        title: 'Save folder for uploaded blobs'
+        type: 'string'
+  worker:
+    type: 'object'
+    additionalProperties: false
+    properties:
+      port: 
+        $ref: '#/definitions/port'
+      cluster_size:
+        title: "Number of processes in this Node cluster"
+        type: 'number'
+      enabled:
+        title: "List of enabled task worker names"
+        type: 'array'
+        items:
+          type: 'string'
+          enum:
+            - 'tesseract'
+      available:
+        type: 'object'
+        patternProperties:
+          '.+':
+            concurrent:
+              title: 'Number of concurrent jobs for this task'
+              type: 'number'
+  redis:
+    title: 'Configuration for Redis, see https://github.com/NodeRedis/node_redis#options-object-properties'
+    type: 'object'
+    properties:
+      host:
+        type: 'string'
+      port:
+        $ref: '#/definitions/port'
+      password:
+        type: 'string'
+      no_ready_check:
+        type: 'boolean'

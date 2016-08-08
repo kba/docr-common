@@ -1,0 +1,18 @@
+jobserver:
+  port: 3001
+worker:
+  port: 4001
+  cluster_size: 2
+  enabled:
+    - 'tesseract'
+  available:
+    tesseract:
+      concurrent: 2
+blob:
+  url: 'http://localhost:5002'
+  port: 5002
+  folder: '/tmp/docr-blob'
+redis:
+  host: '127.0.0.1'
+  port: 6379
+  no_ready_check: true

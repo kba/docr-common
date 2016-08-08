@@ -1,0 +1,8 @@
+title: "JSON Schema for an OCR job"
+type: 'object'
+properties:
+  engineName:
+    type: 'string'
+    enum: 
+      - 'tesseract'
+      - 'ocropy'

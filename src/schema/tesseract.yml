@@ -5,13 +5,27 @@ definitions:
     title: 'A reference to a file, either a HTTP URI or a urn:sha1: URI'
     type: 'string'
     pattern: '^(https?://.*|urn:sha1:[a-z0-9]{40})$'
+  blob_ref_array:
+    title: 'A list of references to files'
+    type: 'array'
+    items:
+      $ref: '#/definitions/blob_ref'
+  blob_ref_object:
+    title: 'An object of references to files, keys are file names to be used'
+    type: 'object'
+    patternProperties:
+      '.+':
+        $ref: '#/definitions/blob_ref'
 required:
   - 'input'
   - 'language'
   - 'outputFormat'
 properties:
   input:
-    $ref: '#/definitions/blob_ref'
+    oneOf:
+      - $ref: '#/definitions/blob_ref'
+      - $ref: '#/definitions/blob_ref_array'
+      - $ref: '#/definitions/blob_ref_object'
   output:
     $ref: '#/definitions/blob_ref'
   language:

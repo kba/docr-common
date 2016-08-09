@@ -3,6 +3,7 @@ jobserver:
 worker:
   port: 4001
   cluster_size: 2
+  # tempdir_prefix: '/tmp/docr-worker-'
   enabled:
     - 'tesseract'
   available:

@@ -9,6 +9,7 @@ module.exports.ajv = ajv = new Ajv(
 	verbose: true
 	jsonPointers: true
 	allErrors: true
+	useDefaults: true
 )
 
 module.exports.schemas = schemas = {}

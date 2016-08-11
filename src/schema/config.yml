@@ -34,6 +34,10 @@ properties:
       cluster_size:
         title: "Number of processes in this Node cluster"
         type: 'number'
+      tempdir_prefix:
+        title: 'Prefix to use for temporary directories'
+        type: 'string'
+        default: '/tmp/docr-worker-'
       enabled:
         title: "List of enabled task worker names"
         type: 'array'
